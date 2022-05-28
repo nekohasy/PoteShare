@@ -20,7 +20,8 @@
   height: 180px;
   position: absolute;
   top: 20px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .room-profile {
@@ -65,7 +66,8 @@
 
 .room-show-image, .reservations-new-image {
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .room-show-nav, .reservations-new-nav {
@@ -201,7 +203,8 @@
 .room-posts-image, .reservations-image {
   width: 240px;
   height: 140px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .room-posts table, .reservations table {
@@ -242,6 +245,7 @@
   color: #909090;
 }
 
+/* line 207, app/assets/stylesheets/rooms.scss */
 .room-posts table tbody .posts-content, .reservations table tbody .posts-content {
   max-width: 400px;
 }
