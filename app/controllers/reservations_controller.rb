@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   def index
+    @reservation = Reservation.all
   end
 
   def new
@@ -10,11 +11,18 @@ class ReservationsController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @person_num = params[:person_num]
-    @reservation.total_day = @end_date.to_date - @start_date.to_date
-    @total_amount = @room.price * @person_num.to_i * @reservation.total_day
+    @total_day = @end_date.to_date - @start_date.to_date
+    @total_amount = @room.price * @person_num.to_i * @total_day.numerator
   end
 
   def create
+    @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :room_id, :user_id, :total_amount))
+    if @reservation.save
+      flash[:notice] = "ルームを予約しました"
+      redirect_to :reservations
+    else
+      render "new"
+    end
   end
 
   def show
