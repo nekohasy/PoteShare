@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   root "top#index"
-  devise_for :users
-
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+  }
   resources :users do
     collection do
       get 'account'
+      get 'profile'
+      patch 'profile'
     end
   end
 

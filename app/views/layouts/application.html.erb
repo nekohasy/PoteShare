@@ -33,10 +33,10 @@
       <% if user_signed_in? %>
       <div class="header-right-nav">
         <div class="nav-item d-sm-inline-block d-none">
-          <% current_user.name %>
+          <%= current_user.name %>
         </div>
         <div class="nav-item">
-          <img class="mx-3 p-1 host-icon nav-trigger" alt="メニュー" src=<% current_user.image %> />
+          <img class="mx-3 p-1 host-icon nav-trigger" alt="メニュー" src=/assets/<%= current_user.image %> />
           <ul class="header-nav-menu">
             <li><a href="/rooms/new">ルーム登録</a></li>
             <li><a href="/reservations">予約済みルーム一覧</a></li>
