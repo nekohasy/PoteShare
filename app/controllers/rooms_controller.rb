@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
     @rooms = Room.all
   end
 
+  def posts
+    @rooms = current_user.rooms.all
+  end
+
   def new
     @room = Room.new
   end
