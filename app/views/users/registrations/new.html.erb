@@ -1,8 +1,4 @@
-<div class="notifications">
-  <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-</div>
+<%= render "shared/notifications" %>
 <div class="container device">
   <div class="device_frame">
     <p class="my-4">新しいアカウントを作成</p>

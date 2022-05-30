@@ -1,8 +1,4 @@
-<div class="notifications">
-  <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-</div>
+<%= render "shared/notifications" %>
 <div class="container-fiuld reservations">
   <h4 class="pb-4">予約済みルーム一覧</h4>
   <table>
