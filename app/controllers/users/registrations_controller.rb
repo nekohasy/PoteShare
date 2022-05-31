@@ -5,22 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    @user = User.new
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
-  def create
-    @user = User.new(sign_up_params)
-    unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
-      render "devise/registrations/new" and return
-    end
-    @user[:image] = "default_icon.jpeg"
-    @user.save
-    sign_in(:user, @user)
-    redirect_to root_path
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
