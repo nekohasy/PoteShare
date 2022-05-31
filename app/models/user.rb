@@ -24,4 +24,6 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  attr_accessor :current_password
 end

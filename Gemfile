@@ -60,3 +60,6 @@ gem 'carrierwave', '~> 2.0'
 
 # devise
 gem 'devise'
+
+# ransack
+gem 'ransack'

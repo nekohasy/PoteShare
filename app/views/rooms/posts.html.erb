@@ -14,8 +14,8 @@
     <tbody>
       <% @rooms.each do |room| %>
         <tr>
-          <td><a href="/rooms/<%= room.id %>"><img src=<%= @room.image %> class="room-posts-image" /></a></td>
-          <td class="posts-name"><a href="/rooms/<%= room.id %>"><%= room.name %></a></td>
+          <td><%= link_to image_tag(room.image.url, class: "room-posts-image"),  "/rooms/#{room.id}" %></td>
+          <td class="posts-name"><%= link_to "#{room.name}", "/rooms/#{room.id}" %></td>
           <td class="posts-content"><%= room.content %></td>
           <td class="price-icon"><%= room.price %></td>
           <td><%= room.created_at %></td>

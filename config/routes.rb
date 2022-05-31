@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :rooms do
     collection do
       get 'posts'
+      get 'search'
     end
   end
   resources :reservations
