@@ -63,3 +63,6 @@ gem 'devise'
 
 # ransack
 gem 'ransack'
+
+# pry-rails
+gem 'pry-rails'

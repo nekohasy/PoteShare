@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
+
   resources :users do
     collection do
       get 'account'
@@ -17,5 +18,8 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  
+  resources :users
+  resources :rooms
   resources :reservations
 end

@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :set_q
+  
   def index
     @rooms = Room.all
   end
@@ -25,6 +27,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def search

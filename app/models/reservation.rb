@@ -20,4 +20,8 @@ class Reservation < ApplicationRecord
     return if end_date.blank?
     errors.add(:end_date, "は開始日より後にしてください") if end_date < start_date
   end
+
+  def total_day_calc
+    self.end_date.to_date - self.start_date.to_date
+  end
 end

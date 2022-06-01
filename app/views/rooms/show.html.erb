@@ -17,7 +17,8 @@
       <div class="room-show-nav">
         <h5 class="price-icon"><%= @room.price %> / 日</h5>
         <div class="room-show-date-select">
-          <%= form_with url: "/reservations/new", method: :get do |f| %>
+          <%= form_with model: @reservation, url: new_reservation_path, method: :get do |f| %>
+            <%= f.hidden_field :room_id, value: @room.id %>
             <%= f.label :start_date ,"開始日" %>
             <%= f.date_field :start_date, id: "start_date", class: "form-control mb-4" %>
             <%= f.label :end_date ,"終了日" %>

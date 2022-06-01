@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @reservation.each do |reservation| %>
+      <% @reservations.each do |reservation| %>
         <tr>
           <td><%= link_to image_tag(reservation.room.image.url, class: "reservations-image"),  "/rooms/#{reservation.room_id}" %></td>
           <td class="posts-name"><%= link_to "#{reservation.room.name}", "/rooms/#{reservation.room_id}" %></td>

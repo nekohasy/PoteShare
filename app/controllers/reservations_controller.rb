@@ -1,27 +1,29 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @reservation = Reservation.all
+    @reservations = current_user.reservations.all.order(:start_date)
   end
 
   def new
-    @reservation = Reservation.new
-    @room = Room.find(params[:room_id])
-    @room_id = params[:room_id]
-    @user_id = params[:user_id]
-    @start_date = params[:start_date]
-    @end_date = params[:end_date]
-    @person_num = params[:person_num]
-    @total_day = @end_date.to_date - @start_date.to_date
-    @total_amount = @room.price * @person_num.to_i * @total_day.numerator
+    @reservation = Reservation.new(reservation_params)
+    @room = Room.find(params[:reservation][:room_id])
+    @reservation.user_id = current_user.id
+    if @reservation.save
+      @reservation.total_day = @reservation.total_day_calc.to_i
+      @reservation.total_amount = @room.price * @reservation.person_num * @reservation.total_day
+    else
+      render 'rooms/show'
+    end
   end
 
   def create
-    @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :room_id, :user_id, :total_amount))
+    @reservation = Reservation.new(reservation_params)
+    @room = Room.find(params[:reservation][:room_id])
     if @reservation.save
-      flash[:notice] = "ルームを予約しました"
-      redirect_to :reservations
+      redirect_to reservation_path(@reservation)
     else
-      render "new"
+      render 'rooms/show'
     end
   end
 
@@ -29,12 +31,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
   end
 
-  def edit
-  end
+  private
 
-  def update
-  end
-
-  def destroy
+  def reservation_params
+    params.require(:reservation).permit(:start_date, :end_date, :person_num, :total_day, :total_amount, :user_id, :room_id)
   end
 end
