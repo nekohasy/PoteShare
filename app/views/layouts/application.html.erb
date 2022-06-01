@@ -1,16 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PoteShare</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>PoteShare</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left-nav">
+        <%= link_to root_path do %>
+          <%= image_tag 'logo.png' %>
+        <% end %>
+        <%= search_form_for @q, url: search_rooms_path do |f| %>
+        <div class="header-sharch d-lg-inline-block d-none">
+          <%= f.search_field :address_cont, class: "form-control", :placeholder => "エリア" %>
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="header-sharch d-lg-inline-block d-none">
+          <%= f.search_field :name_or_address_or_content_cont, class: "form-control", :placeholder => "キーワード" %>
+          <i class="fas fa-search"></i>
+        </div>
+        <%= f.submit class: "d-none" %>
+        <% end %>
+      </div>
+      <% if user_signed_in? %>
+      <div class="header-right-nav">
+        <div class="nav-item d-sm-inline-block d-none">
+          <%= current_user.name %>
+        </div>
+        <div class="nav-item">
+          <%= image_tag current_user.image.url, alt: "メニュー", class: "mx-3 p-1 host-icon nav-trigger" %>
+          <ul class="header-nav-menu">
+            <li><a href="/rooms/new">ルーム登録</a></li>
+            <li><a href="/reservations">予約済みルーム一覧</a></li>
+            <li><a href="/rooms/posts">登録済みルーム一覧</a></li>
+            <li><a href="/users/account">設定</a></li>
+            <li><a rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a></li>
+          </ul>
+        </div>
+      </div>
+      <% else %>
+      <div class="header-right-nav">
+        <div class="nav-item">
+          <a class="btn btn-primary my-2 mx-3" href="/users/sign_in">ログイン</a>
+          <a class="btn btn-secondary" href="/users/sign_up">登録する</a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </header>
+  <%= yield %>
+  <footer class="footer">
+    <p>© 2020 POTEPAN.INC.</p>
+  </footer>
+</body>
+
 </html>
