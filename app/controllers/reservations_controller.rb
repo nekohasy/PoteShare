@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @room = Room.find(params[:reservation][:room_id])
     @reservation.user_id = current_user.id
-    if @reservation.save
+    if @reservation.valid?
       @reservation.total_day = @reservation.total_day_calc.to_i
       @reservation.total_amount = @room.price * @reservation.person_num * @reservation.total_day
     else
