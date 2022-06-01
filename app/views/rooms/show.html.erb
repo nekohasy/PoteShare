@@ -1,10 +1,10 @@
 <div class="container room-show">
   <div class="row">
     <div class="col-md-8">
-      <img src=<%= @room.image %> alt="部屋画像" class="room-show-image" />
+    <%= image_tag(@room.image.url, class: "room-show-image") %>
       <div class="room-show-detile">
         <div class="room-show-detile-icon">
-          <a href="/"><img class="host-icon" src="/assets/default_icon.jpg" /></a>
+          <%= image_tag(@room.user.image.url, class: "host-icon") %>
         </div>
         <div class="room-show-profile">
           <p class="room-show-profile-name"><%= @room.name %></p>

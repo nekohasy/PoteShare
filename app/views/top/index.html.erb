@@ -20,26 +20,15 @@
     <div class="panel-area m-5">
       <h1 class="section-title">おすすめのエリア</h1>
       <div class="row">
+      <% area = ["東京", "大阪", "京都", "札幌"]%>
+      <% area_en = ["tokyo", "osaka", "kyoto", "sapporo"]%>
+      <% area.zip(area_en) do |area, area_en| %>
         <div class="panel-item col-lg-3 col-6">
-          <span>東京</span>
-          <%= link_to image_tag("img_tokyo.jpeg", class:"panel-image"), search_rooms_path(q: {address_cont: "東京"}) %>
+          <span><%= area %></span>
+          <%= link_to image_tag("img_#{area_en}.jpeg", class:"panel-image"), search_rooms_path(q: {address_cont: "#{area}"}) %>
           <div class="shadow"></div>
         </div>
-        <div class="panel-item col-lg-3 col-6">
-          <span>大阪</span>
-          <%= link_to image_tag("img_osaka.jpeg", class:"panel-image"), search_rooms_path(q: {address_cont: "大阪"}) %>
-          <div class="shadow"></div>
-        </div>
-        <div class="panel-item col-lg-3 col-6">
-          <span>京都</span>
-          <%= link_to image_tag("img_kyoto.jpeg", class:"panel-image"), search_rooms_path(q: {address_cont: "京都"}) %>
-          <div class="shadow"></div>
-        </div>
-        <div class="panel-item col-lg-3 col-6">
-          <span>札幌</span>
-          <%= link_to image_tag("img_sapporo.jpeg", class:"panel-image"), search_rooms_path(q: {address_cont: "札幌"}) %>
-          <div class="shadow"></div>
-        </div>
+      <% end %>
       </div>
     </div>
   </div>

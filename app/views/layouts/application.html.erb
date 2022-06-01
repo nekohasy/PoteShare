@@ -18,7 +18,7 @@
   <header class="header">
     <div class="header-inner">
       <div class="header-left-nav">
-        <a href="/"><img alt="サイトのロゴ画像" src="/assets/logo.png" /></a>
+        <%= link_to image_tag ("/assets/logo.png"), action: "index" %>
         <%= search_form_for @q, url: search_rooms_path do |f| %>
         <div class="header-sharch d-lg-inline-block d-none">
           <%= f.search_field :address_cont, class: "form-control", :placeholder => "エリア" %>
